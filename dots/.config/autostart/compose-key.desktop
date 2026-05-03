@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Compose Key Setup
+Comment=Configure compose key for keyd macros
+Exec=setxkbmap -option compose:menu
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=true

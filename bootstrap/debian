@@ -117,11 +117,9 @@ sudo tar -xzf idea.tar.gz -C /opt/
 sudo ln -sf /opt/idea-IC-*/bin/idea.sh /usr/local/bin/idea
 rm idea.tar.gz
 
-echo "Installing TeamViewer..."
-wget -qO - https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/teamviewer-keyring.gpg
-echo "deb [arch=amd64,i386 signed-by=/usr/share/keyrings/teamviewer-keyring.gpg] https://linux.teamviewer.com/deb stable main" | sudo tee /etc/apt/sources.list.d/teamviewer.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y teamviewer
+echo "Installing TeamViewer..." 
+TV_ARCH=$([ "$IS_X64" -eq 1 ] && echo "amd64" || echo "i386")
+download_and_install "https://download.teamviewer.com/download/linux/teamviewer_${TV_ARCH}.deb"
 
 echo "Installing FileBot..."
 curl -fsSL "https://raw.githubusercontent.com/filebot/plugins/master/gpg/maintainer.pub" | sudo gpg --dearmor --yes -o "/usr/share/keyrings/filebot.gpg"
